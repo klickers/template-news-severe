@@ -4,7 +4,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                serif: "'News Reader', serif",
+                serif: "'Playfair Display', serif",
                 sans: "'Roboto', sans-serif",
                 heading: "'Bebas Neue', sans-serif",
             },

@@ -1,9 +1,184 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+
+const featured = [
+    {
+        tag: "HOT",
+        title: "The biggest news story of the year",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2015/03/11/12/31/buildings-668616__480.jpg",
+    },
+    {
+        tag: "Politics",
+        title: "Everyone's screaming, but no one knows why",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2014/10/07/16/24/us-capitol-477987__480.jpg",
+    },
+    {
+        tag: "Business",
+        title: "Is there a recession or is there not?",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849822__480.jpg",
+    },
+    {
+        tag: "Sports",
+        title: "Half the world didn't know what was happening",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2012/11/28/11/11/football-67701__480.jpg",
+    },
+];
+
+const all = [
+    {
+        tag: "Opinion",
+        title: "You haven't lived if you've never had a macaroon",
+        description:
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2016/11/29/06/17/black-coffee-1867753__480.jpg",
+    },
+    {
+        tag: "Books",
+        title: "Spring reads you won't want to miss",
+        description:
+            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2016/10/26/10/05/book-1771073__480.jpg",
+    },
+    {
+        tag: "Opinion",
+        title: "Everyone's sick of these Valentine's Day gifts",
+        description:
+            "Viverra orci sagittis eu volutpat. Aliquet nec ullamcorper sit amet risus nullam.",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2017/02/11/14/19/valentines-day-2057745__480.jpg",
+    },
+    {
+        tag: "Science",
+        title: "Your cat doesn't dream of you when it's sleeping",
+        description:
+            "Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Vitae turpis massa sed elementum tempus egestas sed sed risus.",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2019/05/08/21/21/cat-4189697__480.jpg",
+    },
+];
+
+const missed = [
+    {
+        tag: "Lifestyle",
+        title: "Last week's trends aren't hot anymore",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2017/04/08/16/16/kicks-2213619__480.jpg",
+    },
+    {
+        tag: "U.S.",
+        title: "Californians complain of cold temperatures",
+        url: "#!",
+        img: "https://cdn.pixabay.com/photo/2016/03/27/19/57/cold-1284028__480.jpg",
+    },
+];
 ---
 
 <Layout title="Home">
-    <main></main>
+    <main>
+        <section class="featured">
+            {
+                featured.map((fea) => (
+                    <Card
+                        url={fea.url}
+                        img={fea.img}
+                        tag={fea.tag}
+                        title={fea.title}
+                        description={fea.description}
+                        horizontal
+                    />
+                ))
+            }
+        </section>
+        <section class="all-news">
+            <div>
+                <div class="column">
+                    <h2>In Case You Missed It</h2>
+                    {
+                        missed.map((fea) => (
+                            <Card
+                                url={fea.url}
+                                img={fea.img}
+                                tag={fea.tag}
+                                title={fea.title}
+                            />
+                        ))
+                    }
+                </div>
+                {
+                    all.map((fea) => (
+                        <Card
+                            url={fea.url}
+                            img={fea.img}
+                            tag={fea.tag}
+                            title={fea.title}
+                            description={fea.description}
+                            horizontal
+                        />
+                    ))
+                }
+            </div>
+        </section>
+    </main>
 </Layout>
 
-<style></style>
+<style is:global>
+    main {
+        @apply space-y-12;
+    }
+    .featured {
+        @apply grid grid-cols-3 grid-rows-3 gap-6;
+        .card {
+            &:first-child {
+                @apply block space-x-0 pb-4;
+                grid-area: 1 / 1 / 4 / 3;
+                img {
+                    @apply h-72 w-full;
+                }
+            }
+        }
+    }
+    .all-news {
+        h1 {
+            @apply font-heading text-5xl mt-10 mb-4;
+        }
+        h2 {
+            @apply font-medium mb-0 font-sans;
+        }
+        & > div {
+            @apply grid grid-cols-4 gap-6;
+            .column {
+                @apply space-y-6 grid grid-cols-1;
+                &:first-child {
+                    grid-area: 1 / 1 / 5 / 2;
+                }
+            }
+            .card {
+                grid-column: span 3;
+            }
+        }
+    }
+
+    @media (max-width: theme("screens.md")) {
+        .featured,
+        .all-news > div {
+            @apply grid-cols-1 grid-rows-none;
+            .card {
+                grid-column: span 1;
+            }
+        }
+        .featured {
+            .card:first-child {
+                grid-area: 1;
+            }
+        }
+    }
+</style>

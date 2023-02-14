@@ -25,13 +25,27 @@ const { title } = Astro.props;
     </body>
 </html>
 <style is:global>
-    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
 
+    body {
+        @apply bg-stone-50;
+    }
     #wrapper {
         @apply my-12 px-12 font-serif;
+    }
+
+    @media (max-width: theme("screens.md")) {
+        #wrapper {
+            @apply px-10;
+        }
+    }
+    @media (max-width: theme("screens.sm")) {
+        #wrapper {
+            @apply my-10 px-5;
+        }
     }
 </style>

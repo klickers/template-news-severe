@@ -1,0 +1,67 @@
+---
+export interface props {
+    url?: string;
+    img: string;
+    tag: string;
+    title: string;
+    description?: string;
+    horizontal?: boolean;
+}
+
+const {
+    url = "#!",
+    img,
+    tag,
+    title,
+    description = null,
+    horizontal = false,
+} = Astro.props;
+---
+
+<a href={url} class={horizontal ? "card horizontal" : "card"}>
+    <img src={img} />
+    <div class="content">
+        <div>
+            <p class="tag">{tag}</p>
+            <p class="title">{title}</p>
+            <p class="description">{description}</p>
+        </div>
+    </div>
+</a>
+
+<style>
+    .card {
+        @apply border border-stone-500 bg-white;
+        &:hover {
+            .title {
+                @apply text-stone-400;
+            }
+        }
+        img {
+            @apply w-full h-32 object-cover object-center mb-3;
+        }
+        .content {
+            @apply flex items-center py-4 px-4;
+            .tag {
+                @apply mb-1 text-sm uppercase text-stone-500;
+            }
+            .title {
+                @apply font-sans font-medium text-lg mb-1 duration-300;
+            }
+        }
+    }
+
+    @media (min-width: theme("screens.md")) {
+        .horizontal {
+            @apply flex;
+            img {
+                @apply h-full w-32;
+            }
+        }
+    }
+    @media (max-width: theme("screens.md")) {
+        .description {
+            @apply hidden;
+        }
+    }
+</style>

@@ -25,6 +25,10 @@ const links = [
         url: "#!",
     },
     {
+        title: "Science",
+        url: "#!",
+    },
+    {
         title: "Lifestyle",
         url: "#!",
     },
@@ -41,10 +45,19 @@ const links = [
 
 <style>
     nav {
-        @apply py-1 mx-auto border-y border-stone-500 flex justify-center space-x-6 font-sans text-sm font-medium;
+        @apply py-1 mx-auto border-y border-stone-500 flex flex-wrap justify-center space-x-6 font-sans text-sm font-medium;
         a {
             &:hover {
                 @apply underline;
+            }
+        }
+    }
+
+    @media (max-width: theme("screens.sm")) {
+        nav {
+            @apply space-x-0;
+            a {
+                @apply inline-block pr-4;
             }
         }
     }
