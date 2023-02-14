@@ -1,0 +1,51 @@
+---
+const links = [
+    {
+        title: "HOT",
+        url: "#!",
+    },
+    {
+        title: "Local",
+        url: "#!",
+    },
+    {
+        title: "U.S.",
+        url: "#!",
+    },
+    {
+        title: "Politics",
+        url: "#!",
+    },
+    {
+        title: "Sports",
+        url: "#!",
+    },
+    {
+        title: "Business",
+        url: "#!",
+    },
+    {
+        title: "Lifestyle",
+        url: "#!",
+    },
+    {
+        title: "Opinion",
+        url: "#!",
+    },
+];
+---
+
+<nav>
+    {links.map((link) => <a href={link.url}>{link.title}</a>)}
+</nav>
+
+<style>
+    nav {
+        @apply py-1 mx-auto border-y border-stone-500 flex justify-center space-x-6 font-sans text-sm font-medium;
+        a {
+            &:hover {
+                @apply underline;
+            }
+        }
+    }
+</style>
